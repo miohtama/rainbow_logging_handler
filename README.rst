@@ -3,7 +3,10 @@ rainbow_logging_handler
 .. image:: https://travis-ci.org/laysakura/rainbow_logging_handler.png?branch=master
    :target: https://travis-ci.org/laysakura/rainbow_logging_handler
 
-Ultimate Python colorized logger.
+Ultimate Python colorized logger. Make your console log output more readable by coloring 
+it in intelligent manner.
+
+`Read more in the blog post <http://opensourcehacker.com/2013/03/14/ultima-python-logger-somewhere-over-the-rainbow/>`_.
 
 Usage
 -----
@@ -60,7 +63,7 @@ Install from Github repo
 Author
 ======
 
-Mikko Ohtamaa <mikko@opensourcehacker.com>, Sho Nakatani <lay.sakura@gmail.com>
+`Mikko Ohtamaa <http://opensourcehacker.com>`_, `Sho Nakatani <mailto:lay.sakura@gmail.com>`_
 
 License
 -------
