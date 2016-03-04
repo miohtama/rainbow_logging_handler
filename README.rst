@@ -16,40 +16,48 @@ Usage
 
 Generic usage example
 #####################
+
 .. image:: http://github.com/laysakura/rainbow_logging_handler/raw/master/doc/screenshot.png
 
-This script runs like above screenshot.
+This sets up Python logging to *stderr* with coloring enabled.
 
 .. code-block:: python
+      
+      import logging
+      from rainbow_logging_handler import RainbowLoggingHandler
+      
+      def setup_logging():
+      
+          # Setup Python root logger to DEBUG level
+          logger = logging.getLogger()
+          logger.setLevel(logging.DEBUG)
+          formatter = logging.Formatter("[%(asctime)s] %(name)s %(funcName)s():%(lineno)d\t%(message)s") 
+      
+          # Add colored log handlign to sys.stderr
+          handler = RainbowLoggingHandler(sys.stderr)
+          handler.setFormatter(formatter)
+          logger.addHandler(handler)
+      
+      
+      setup_logging()
+      
+      # Get a logger by your module name
+      logger = logging.getLogger(__name__)
+      
+      # ... your code goes her ...
+      logger.debug("debug msg")
+      logger.info("info msg")
+      logger.warn("warn msg")
+      logger.error("error msg")
+      logger.critical("critical msg")
 
-    import sys
-    import logging
-    from rainbow_logging_handler import RainbowLoggingHandler
+      try:
+          raise RuntimeError("Opa!")
+      except Exception as e:
+          logger.exception(e)
 
-    def main_func():
-        # setup `logging` module
-        logger = logging.getLogger('test_logging')
-        logger.setLevel(logging.DEBUG)
-        formatter = logging.Formatter("[%(asctime)s] %(name)s %(funcName)s():%(lineno)d\t%(message)s")  # same as default
-
-        # setup `RainbowLoggingHandler`
-        handler = RainbowLoggingHandler(sys.stderr, color_funcName=('black', 'yellow', True))
-        handler.setFormatter(formatter)
-        logger.addHandler(handler)
-
-        logger.debug("debug msg")
-        logger.info("info msg")
-        logger.warn("warn msg")
-        logger.error("error msg")
-        logger.critical("critical msg")
-
-        try:
-            raise RuntimeError("Opa!")
-        except Exception as e:
-            logger.exception(e)
-
-    if __name__ == '__main__':
-        main_func()
+     if __name__ == '__main__':
+         main_func()
 
 
 Usage with Django
